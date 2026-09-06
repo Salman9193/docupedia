@@ -1,0 +1,21 @@
+title: Docupedia
+description: Personal reference repository for Information Security and Privacy standards.
+theme: jekyll-theme-cayman
+
+# Let Jekyll process Markdown files
+markdown: kramdown
+kramdown:
+  input: GFM          # GitHub Flavoured Markdown
+  hard_wrap: false
+
+# Make sure all .md files are rendered
+include:
+  - standards
+
+# Exclude things that aren't pages
+exclude:
+  - AGENTS.md
+  - README.md         # root README renders as index.html automatically
+  - "*.sh"
+  - "*.py"
+  - .gitkeep
