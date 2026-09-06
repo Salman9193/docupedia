@@ -13,10 +13,28 @@ standards. It contains:
 - Plain-English summaries of what each standard requires
 - Clause-by-clause breakdowns for study and reference
 - Metadata about each standard's current edition, amendments, and ISO catalogue link
+- Links to licensed source documents stored in Google Drive
 - Transition notes between major editions
 
 It is **not** a policy repository, a compliance evidence store, or a certification tool.
 It is one person's structured notes on the standards landscape.
+
+---
+
+## Two-system design
+
+This repo works alongside a Google Drive folder. Each system has a distinct role:
+
+| System | Holds | Why |
+|---|---|---|
+| **This GitHub repo** | Markdown notes, summaries, clause breakdowns, AGENTS.md | Git versions text well; diffs are readable |
+| **Google Drive** | Purchased ISO PDFs, working documents, binaries | Drive handles files Git cannot diff usefully |
+
+**Root Drive folder:** [https://drive.google.com/drive/folders/1CM4qRAFE8jjKRjMPfpenXAb7OvsTWzkl](https://drive.google.com/drive/folders/1CM4qRAFE8jjKRjMPfpenXAb7OvsTWzkl)
+
+Every standard's `source.md` contains a `Licensed documents` row linking to Drive.
+When adding a new standard, add its purchased PDF to Drive and update `source.md` accordingly.
+Never copy the PDF content into this repo.
 
 ---
 
@@ -34,7 +52,7 @@ It is one person's structured notes on the standards landscape.
 - Compliance evidence, audit logs, or records of any kind
 - Personal data of any kind
 - Official ISO document text — these are copyrighted; do not reproduce clauses verbatim
-- PDFs, Word documents, or any binary files
+- PDFs, Word documents, or any binary files — these go in Google Drive
 
 ---
 
@@ -45,8 +63,8 @@ standards/
   iso-{number}/
     README.md              # Required. Rendered on folder click. What the standard is,
                            # scope, current edition, key relationships, certification status.
-    source.md              # Required. Edition, amendment, ISO catalogue URL, location of
-                           # licensed copy. Never the document content itself.
+    source.md              # Required. Edition, amendment, ISO catalogue URL, Drive link.
+                           # Never the document content itself.
     clauses/               # One file per clause, named {nn}-{slug}.md
     annex-a/               # For 27001: one file per Annex A theme (a5, a6, a7, a8)
     controls/              # For 27002: one file per control theme or individual control
@@ -71,7 +89,7 @@ standards/
 2. `README.md` must cover: what the standard is, who it applies to, current edition,
    certifiable or guidance only, key relationships to other standards, ISO catalogue URL.
 3. `source.md` must cover: full title, edition, committee, ISO catalogue link,
-   a placeholder for licensed copy location. Never actual document content.
+   and a `Licensed documents` row linking to the Drive folder. Never actual document content.
 4. Add a row to the root `README.md` standards table.
 5. Create sub-folders (`clauses/`, etc.) with `.gitkeep` if empty.
 6. Commit message: `feat: add iso-{number} skeleton`
@@ -115,10 +133,10 @@ standards/
 
 | Never commit | Reason |
 |---|---|
-| Official ISO PDFs or document text | Copyright — ISO sells these |
+| Official ISO PDFs or document text | Copyright — ISO sells these; store in Drive instead |
 | Personal data of any kind | Privacy |
 | Credentials, tokens, or API keys | Security |
-| Binary files (Word, Excel, images) | Git cannot diff them usefully |
+| Binary files (Word, Excel, images) | Git cannot diff them usefully; store in Drive instead |
 | Compliance evidence or audit records | Wrong repo — belongs in a DMS |
 | Policies or procedures | Wrong repo — belongs in a policy repo |
 
@@ -145,9 +163,9 @@ Keep commit messages under 72 characters. Use the imperative mood ("add", not "a
 ## Things to check before committing
 
 - [ ] `README.md` exists in every standard folder
-- [ ] `source.md` exists in every standard folder
+- [ ] `source.md` exists in every standard folder with a Drive link
 - [ ] Root `README.md` standards table is up to date
-- [ ] No binary files or PDFs added
+- [ ] No binary files or PDFs added (use Drive instead)
 - [ ] No ISO document text reproduced verbatim
 - [ ] Clause files follow the `{nn}-{slug}.md` naming pattern
 - [ ] Commit message follows conventions above
